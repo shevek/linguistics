@@ -32,8 +32,8 @@ public class Registry {
 
 	private static Map<Key<Object>,Object>	handlers;
 	static {
-		add(Locale.UK, Pluralizer.class, new EnglishPluralizer(true));
-		add(Locale.US, Pluralizer.class, new EnglishPluralizer(false));
+		add(Locale.UK, Pluralizer.class, new EnglishPluralizer(Locale.UK));
+		add(Locale.US, Pluralizer.class, new EnglishPluralizer(Locale.US));
 	}
 
 	public static <T> T get(Locale locale, Class<T> iface) {

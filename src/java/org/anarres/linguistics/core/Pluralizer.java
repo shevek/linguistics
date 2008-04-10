@@ -1,5 +1,10 @@
 package org.anarres.linguistics.core;
 
-public interface Pluralizer {
-	public String getPlural(String word);
+import java.util.Locale;
+
+public abstract class Pluralizer extends Base {
+	public Pluralizer(Locale locale) {
+		super(locale);
+	}
+	public abstract String getPlural(String word);
 }

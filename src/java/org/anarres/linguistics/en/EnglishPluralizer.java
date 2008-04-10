@@ -1,11 +1,12 @@
 package org.anarres.linguistics.en;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.anarres.linguistics.core.Pluralizer;
 
-public class EnglishPluralizer implements Pluralizer {
+public class EnglishPluralizer extends Pluralizer {
 
 	/* Priority only matters if any one suffix is a substring of
      * another. */
@@ -22,13 +23,11 @@ public class EnglishPluralizer implements Pluralizer {
 	private Map<String,String>	irregular;
 	private Map<String,Rule>	suffixes;
 
-	public EnglishPluralizer() {
-		this(true);
-	}
-
-	public EnglishPluralizer(boolean classical) {
-		irregular = new HashMap<String,String>();
-		suffixes = new HashMap<String,Rule>();
+	public EnglishPluralizer(Locale locale) {
+		super(locale);
+		this.classical = locale == Locale.UK;
+		this.irregular = new HashMap<String,String>();
+		this.suffixes = new HashMap<String,Rule>();
 
 		addIrregular("ephemeris"     , "ephemerides");
 		addIrregular("iris"          , "irises|irides");
@@ -328,15 +327,20 @@ public class EnglishPluralizer implements Pluralizer {
 	}
 
 	public void addIrregular(String from, String to) {
-		irregular.put(from, to);
+		int	idx = to.indexOf('|');
+		if (idx == -1)
+			irregular.put(from, to);
+		else if (classical)
+			irregular.put(from, to.substring(idx + 1));
+		else
+			irregular.put(from, to.substring(0, idx));
 	}
 
 	public void addIrregular(String[] words, String from, String to) {
 		int	flen = from.length();
 		for (String word : words) {
 			assert word.endsWith(from);
-			int	wlen = word.length();
-			addIrregular(word, word.substring(0, wlen - flen) + to);
+			addIrregular(word, prefix(word, flen) + to);
 		}
 	}
 
@@ -345,9 +349,7 @@ public class EnglishPluralizer implements Pluralizer {
 	}
 
 	private String getPlural(String word, String from, String to) {
-		int	flen = from.length();
-		int	wlen = word.length();
-		return word.substring(0, wlen - flen) + to;
+		return prefix(word, from.length()) + to;
 	}
 
 	public String getPlural(String orig) {

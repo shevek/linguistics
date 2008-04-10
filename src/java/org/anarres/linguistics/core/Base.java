@@ -17,4 +17,10 @@ public abstract class Base {
 	protected String prefix(String word, int trim) {
 		return word.substring(0, word.length() - trim);
 	}
+
+	/** Returns the last 'length' characters of 'word'. */
+	protected String suffix(String word, int length) {
+		return word.substring(word.length() - length);
+	}
+
 }

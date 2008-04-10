@@ -5,11 +5,10 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.anarres.linguistics.core.Conjugator;
-import org.anarres.linguistics.core.Conjugation;
 
 import static org.anarres.linguistics.en.EnglishConjugation.*;
 
-public class EnglishConjugator extends Conjugator {
+public class EnglishConjugator extends Conjugator<EnglishConjugation> {
 
 	private static class Verb {
 		private String	s1;
@@ -22,8 +21,8 @@ public class EnglishConjugator extends Conjugator {
 			this.s3 = s3;
 			this.pl = pl;
 		}
-		public String getConjugation(Conjugation c) {
-			switch ((EnglishConjugation)c.getValue()) {
+		public String getConjugation(EnglishConjugation c) {
+			switch (c) {
 				case I:
 					return s1;
 				case YOU_S:
@@ -87,13 +86,13 @@ public class EnglishConjugator extends Conjugator {
 		addVerb(root, root, root, root, root);
 	}
 
-	public String getConjugation(String orig, Conjugation c) {
+	public String getConjugation(String orig, EnglishConjugation c) {
 		String	word = orig.toLowerCase();
 
 		Verb	v = irregular.get(word);
 		if (v != null) return v.getConjugation(c);
 
-		if (c.getValue() != HE)
+		if (c != HE)
 			return orig;
 		switch (word.charAt(word.length() - 1)) {
 			case 'y':

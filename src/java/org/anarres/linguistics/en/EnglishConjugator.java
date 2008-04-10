@@ -66,24 +66,24 @@ public class EnglishConjugator extends Conjugator<EnglishConjugation> {
 
 		/* Fixed irregular non-present. */
 
-		addVerb("be",   "am", "are", "is", "are");
-		addVerb("can",  "can", "can", "can", "can");
-		addVerb("cannot",  "cannot", "cannot", "cannot", "cannot");
-		addVerb("do",  "do", "do", "does", "do");
-		addVerb("go",  "go", "go", "goes", "go");
-		addVerb("have", "have", "have", "has", "have");
-		addVerb("would",  "would", "would", "would", "would");
+		addIrregular("be",   "am", "are", "is", "are");
+		addIrregular("can",  "can", "can", "can", "can");
+		addIrregular("cannot",  "cannot", "cannot", "cannot", "cannot");
+		addIrregular("do",  "do", "do", "does", "do");
+		addIrregular("go",  "go", "go", "goes", "go");
+		addIrregular("have", "have", "have", "has", "have");
+		addIrregular("would",  "would", "would", "would", "would");
 
-		// addVerb("was",  "was", "were", "was", "were");
+		// addIrregular("was",  "was", "were", "was", "were");
 	}
 
-	public void addVerb(String root,
+	public void addIrregular(String root,
 			String s1, String s2, String s3, String pl) {
 		irregular.put(root, new Verb(s1, s2, s3, pl));
 	}
 
 	private void addFixed(String root) {
-		addVerb(root, root, root, root, root);
+		addIrregular(root, root, root, root, root);
 	}
 
 	public String getConjugation(String orig, EnglishConjugation c) {

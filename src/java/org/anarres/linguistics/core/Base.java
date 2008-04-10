@@ -2,13 +2,19 @@ package org.anarres.linguistics.core;
 
 import java.util.Locale;
 
+/**
+ * The base class of all linguistics handlers.
+ */
 public abstract class Base {
 	private Locale	locale;
 
-	public Base(Locale locale) {
+	protected Base(Locale locale) {
 		this.locale = locale;
 	}
 
+	/**
+	 * Returns the locale of this handler.
+	 */
 	public Locale getLocale() {
 		return locale;
 	}

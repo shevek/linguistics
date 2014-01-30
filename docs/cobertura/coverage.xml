@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.6053511705685619" branch-rate="0.5528455284552846" lines-covered="181" lines-valid="299" branches-covered="68" branches-valid="123" complexity="4.433333333333334" version="2.0.3" timestamp="1391065928536">
+<coverage line-rate="0.6053511705685619" branch-rate="0.5528455284552846" lines-covered="181" lines-valid="299" branches-covered="68" branches-valid="123" complexity="4.433333333333334" version="2.0.3" timestamp="1391066070384">
 	<sources>
 		<source>/home/shevek/java/linguistics/src/main/java</source>
 	</sources>

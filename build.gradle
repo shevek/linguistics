@@ -1,39 +1,23 @@
-// Establish version and status
-ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
-group = "org.anarres.${githubProjectName}"
-
 buildscript {
-    repositories {
-        // mavenLocal()
-        mavenCentral() // maven { url 'http://jcenter.bintray.com' }
-    }
     apply from: file('gradle/buildscript.gradle'), to: buildscript 
 }
 
-allprojects {
-    repositories { 
-        // mavenLocal()
-        mavenCentral() // maven { url: 'http://jcenter.bintray.com' }
-    }
-}
+apply plugin: 'org.anarres.stdproject'
 
-apply from: file('gradle/convention.gradle')
-apply from: file('gradle/maven.gradle')
-apply from: file('gradle/check.gradle')
-apply from: file('gradle/license.gradle')
-// apply from: file('gradle/release.gradle')
+group = "org.anarres.${rootProject.name}"
+
+apply plugin: 'org.anarres.stdmodule'
+stdmodule {
+	description "A library for linguistic manipulation: Conjugation and declension of terms."
+	author id: 'shevek', name: 'Shevek', email: 'github@anarres.org'
+	license 'Apache-2.0'
+}
 
 dependencies {
 	compile 'com.google.code.findbugs:jsr305:2.0.2'
-
-	testCompile 'junit:junit:4.8.1'
-	testCompile 'commons-logging:commons-logging:1.1.1'
 }
 
-javadoc {
-	// def projects = rootProject.subprojects
-	// source projects.collect { project -> project.sourceSets.main.allJava }
-	// classpath = files(projects.collect { project -> project.sourceSets.main.compileClasspath })
-	options.links "http://docs.oracle.com/javase/6/docs/api/"
-	options.splitIndex false
+sourceCompatibility = 1.5
+animalsniffer { 
+	signature = "org.codehaus.mojo.signature:java15:+@signature"
 }

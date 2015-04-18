@@ -1,9 +1,9 @@
 package org.anarres.linguistics.en;
 
 import java.util.Locale;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import static org.junit.Assert.*;
 
 /**
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  */
 public class EnglishPluralizerTest {
 
-    private static final Log LOG = LogFactory.getLog(EnglishPluralizerTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EnglishPluralizerTest.class);
     private final EnglishPluralizer classical = new EnglishPluralizer(Locale.UK);
     private final EnglishPluralizer modern = new EnglishPluralizer(Locale.US);
 
